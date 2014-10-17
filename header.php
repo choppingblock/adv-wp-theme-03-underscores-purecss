@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html <?php language_attributes(); ?>>
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
   
     <?php wp_head(); ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
 
 <div id="layout">
     <!-- Menu toggle -->
@@ -31,21 +31,35 @@
     </a>
 
     <div id="menu">
-        <div class="pure-menu pure-menu-open">
-            <a class="pure-menu-heading" href="#">Company</a>
+    
 
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+    <?php 
 
-                <li class="menu-item-divided pure-menu-selected">
-                    <a href="#">Services</a>
-                </li>
+$defaults = array(
+    'theme_location'  => 'primary',
+    'menu'            => '',
+    'container'       => 'div',
+    'container_class' => 'pure-menu pure-menu-open',
+    'container_id'    => '',
+    'menu_class'      => 'menu',
+    'menu_id'         => '',
+    'echo'            => true,
+    'fallback_cb'     => 'wp_page_menu',
+    'before'          => '',
+    'after'           => '',
+    'link_before'     => '',
+    'link_after'      => '',
+    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+    'depth'           => 0,
+    'walker'          => ''
+);
 
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-    </div>
+wp_nav_menu( $defaults );
+
+     ?>    
+
+</div>
+
 
     <div id="main">
         <div class="header">
